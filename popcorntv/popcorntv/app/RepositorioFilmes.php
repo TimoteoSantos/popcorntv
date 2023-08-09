@@ -20,8 +20,7 @@ class RepositorioFilmesMySQL implements IRepositorioFilmes
 		//cria o objeto que sera responsavel pelas chamadas ao banco de dados
 		$this->conexao = new Conexao("localhost","root","","popcorntv");
 		//conecata ao banco de dados
-		if($this->conexao->conectar() == false){
-			
+		if($this->conexao->conectar() == false){			
 			echo "erro" .mysqli_error();
 		}
 	}
@@ -32,10 +31,10 @@ class RepositorioFilmesMySQL implements IRepositorioFilmes
 	{
 		$titulo = $filme->getTitulo();
 		$sinopse = $filme->getSinopse();
-		$quantidade = $filme->getQuantidate();
+		$quantidade = $filme->getQuantidade();
 		$trailer = $filme->getTrailer();
 		
-		$sql = "INSERT INTO filme (titulo,sinopse,quantidade,trailer) VALUE ('$titulo','$sinopse','$quantidade','$trailer')";
+		$sql = "INSERT INTO filmes (titulo,sinopse,quantidade,trailer) VALUE ('$titulo','$sinopse','$quantidade','$trailer')";
 		$this->conexao->execultarQuery($sql);
 	}
 

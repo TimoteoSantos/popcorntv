@@ -49,7 +49,7 @@
                         <!-- content -->
                         <div class="col-sm-12" id="featured">   
                           <div class="page-header text-muted">Filmes</div>
-                          <form class="form-horizontal">
+                          <form action ='app/script/incluirFilmes.php' method='post' class="form-horizontal">
 							<fieldset>
 							
 							<!-- Form Name -->
@@ -59,7 +59,7 @@
 							<div class="control-group">
 							  <label class="control-label" for="filme">Filme</label>
 							  <div class="controls">
-							    <input id="filme" name="filme" type="text" />
+							    <input id="filme" name="titulo" type="text" />
 							    
 							  </div>
 							</div>
@@ -101,10 +101,9 @@
 							</fieldset>
 							</form>
                         </div>
-                        
+                       
                         <!--/top story-->
-
-                        
+                       
                         <div class="col-sm-12" id="stories">  
                           <div class="page-header text-muted divider">
                             DVDs Cadastrados
