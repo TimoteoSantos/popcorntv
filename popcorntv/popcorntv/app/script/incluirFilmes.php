@@ -1,7 +1,7 @@
 <?php
 
-//requendo o repositorio
-require_once '../RepositorioFilmes.php';
+//requer o arquivo de configuracao
+require_once 'autoload.php';
 
 //estamos instanciando a classe filme que esta requerida em repositorio e ja tem um objeto criado em filmes.php
 //criando o objeto $filmesRecebidos passando pra ele o que recebemos via post

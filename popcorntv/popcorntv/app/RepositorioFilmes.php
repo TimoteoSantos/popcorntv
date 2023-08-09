@@ -1,8 +1,7 @@
 <?php 
 
-require_once 'Conexao.php';
-require_once 'Filmes.php';
-require_once 'InterfaceFilmes.php';
+//requer o arquivo de configuracao
+require_once 'autoload.php';
 
 //interface para que todo os futuros repositorio
 //que venham implementar esse projeto tenham
