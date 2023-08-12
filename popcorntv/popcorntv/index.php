@@ -129,8 +129,10 @@
                         		<td class="col-md-6"><?php echo $filmeTemporario->getTitulo() ?></td>
 								<td class="col-md-6"><?php echo $filmeTemporario->getSinopse() ?></td>
 								<td class="col-md-6"><?php echo $filmeTemporario->getQuantidade() ?></td>								
-								<td class="col-md-6"><?php echo $filmeTemporario->getTrailer() ?></td>		
-                        		<td class="col-md-1"><a class="btn btn-danger" href="#" role="button">Excluir</a></td>
+								<td class="col-md-6"><?php echo $filmeTemporario->getTrailer() ?></td>
+
+                        		<td class="col-md-1"><a class="btn btn-danger" href="app/script/excluir_filme.php?codigo=<?=$filmeTemporario->getCodigo(); ?>" role="button">Excluir</a></td>
+
                         	</tr>
 
 							<?php } ?>

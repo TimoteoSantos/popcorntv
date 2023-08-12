@@ -40,8 +40,9 @@ class RepositorioFilmesMySQL implements IRepositorioFilmes
 	//remover filme 
 	public function removerFilme($codigo)
 	{
-		$sql = "DELETE FROM  filme WHERE codigo = '$codigo'"; //recebe os comandos em sql e atribui a variavel $sql
+		$sql = "DELETE FROM  filmes WHERE codigo = '$codigo'"; //recebe os comandos em sql e atribui a variavel $sql
 		$this->conexao->execultarQuery($sql);//chama o metodo execultarQuery() da classe conexao
+	
 	}
 
 	//atualizar filme
