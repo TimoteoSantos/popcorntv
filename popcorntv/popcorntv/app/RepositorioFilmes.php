@@ -55,7 +55,7 @@ class RepositorioFilmesMySQL implements IRepositorioFilmes
 		$trailer = $filme->getTrailer();
 
 		$sql = "UPDATE filme SET titulo = '$titulo', sinopse = '$sinopse', quantidade = '$quantidade', trailer = '$trailer'
-		WHERE $codigo = '$codigo'";
+		WHERE codigo = '$codigo'";
 
 		$this->conexao->execultarQuery($sql);
 	}

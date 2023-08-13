@@ -1,9 +1,46 @@
 <?php
-
 	require 'app/RepositorioFilmes.php'; //ao requerer o repositorio ja é instaciada a classe porque dentro do repositorio ela foi instaciada
 	$filmes = $repositorio->getListarFilmes();//acessa todos os filmes cadastrados e atribui em $filmes
+	/*
+		aqui temos uma variavel que contem o endereco do arquivo que o formulario ira enviar
+		quando criamos essa variavel ela possui o endereco padrao que é o endereco de INCLUSAO DE FILMES
 
-?>
+		se ouver um codigo no get iremos entrar dentro de um IF  onde alteramos o edereco do envio para ALTERAR o filme
+		porque se tem get veio do proprio formulario nao é um formulario novo
+	*/
+		//variavel que recebe o endereco padrao
+		$destino = 'app/script/incluirFilme.php'; //arquivo para incluir
+
+	//verifica se existe filme no get
+	if(isset($_GET['codigo']))
+	{//se existir get codigo
+
+		//variavel que recebe o endereco quando existe codigo no get
+		$destino = 'app/script/alterarFilme.php'; //arquivo para alterar
+
+		//atrimui a $codigo o codigo do get
+		$codigo = $_GET['codigo'];
+
+		/*busca o objeto filme relativo ao codigo enviado por parametro 
+		observe que estamos criando um novo objeto $filme porque ao enviar via parametro o codigo do filme
+		a classe repositorio pega esse codigo envia para o banco busca os dados desse fime cria um novo objeto com esses dados
+		e nos retorna um novo objeto com esses dados  arquivo RepositorioFilmes.php pode ser observado
+		*/
+		$filme = $repositorio->buscarFilme($codigo); //aqui recebemos um novo objeto com os dados do codigo enviado
+		/*
+		para que o repositorio altere o filme ele ira precisar do codigo porem no formulario nao temos o campo onde informamos o codigo 
+		para que possamos enviar via para o arquivo app/script/alterarFilme.php 
+		nesse caso precisaremos criar um campo oculto que recebelera o codigo do filme que estamos alterando ao enviarmos para o arquivo 
+		app/script/alterarFilme.php entaremos enviando tambem o codigo do filme em um campo oculto do html - type = hidden		
+		*/
+		$campoCodigo = '<input type="hidden" name="codigo" value="'. $codigo.'" />';
+
+
+		// ESTA FALTANDO A PARTE DE IMPLEMENTAR NO HTML AS REGRAS DE ALTERAR FILME
+
+	}//senao ignora
+
+	?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -20,9 +57,7 @@
 	<body>
 <div class="wrapper">
     <div class="box">
-        <div class="row">
-        	
-        	
+        <div class="row">  	
         	
             <!-- sidebar -->
             <div class="column col-sm-3" id="sidebar">

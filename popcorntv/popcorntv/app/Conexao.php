@@ -24,7 +24,7 @@ class Conexao
 		//passando os dados para o mysqli_conect que é uma funcao de conexao com os argumentos do acesso ao banco
 		$this->conexao = mysqli_connect($this->host,$this->usuario,$this->senha,$this->banco);
 
-	if(mysqli_connect_errno($this->conexao)){//testando se conectou
+	if(mysqli_connect_errno()){//testando se conectou
 		
 		return false;
 	
