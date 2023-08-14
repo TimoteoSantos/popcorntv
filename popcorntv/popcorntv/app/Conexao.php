@@ -41,12 +41,14 @@ class Conexao
 	}
 
 	//funcao para execultar uma consulta e opter o primeiro dado
+	
 	function obtemPrimeiroResistroQuery($query){
 		
 		//enviamos o pedido pela conexao e guardamos a respota em linha;
 		$linha = $this->execultarQuery($query);
+		$linha = $linha->fetch_assoc(); //explicar o uso
 		//retorna a primeira linha
-		return mysqli_fetch_array($linha);
+		return $linha;
 		
 		
 	}

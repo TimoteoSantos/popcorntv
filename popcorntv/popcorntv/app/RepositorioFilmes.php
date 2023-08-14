@@ -66,20 +66,23 @@ class RepositorioFilmesMySQL implements IRepositorioFilmes
 
 	public function buscarFilme($codigo)
 	{
-		$linha = $this->Conexao->obtemPrimeiroRegistroQuery("SELECT * FROM filme WHERE codigo = '$codigo'");
+		$linha = $this->conexao->obtemPrimeiroResistroQuery("SELECT * FROM filmes WHERE codigo = '$codigo'");
 
 		//cria um novo objeto com os dados que vieram do banco de dados
+
+		
 		$filme = new Filmes(
-			
-			$linha['titulo'],
-			$linha['codigo'],
-			$linha['sinopse'],
-			$linha['quantidade'],
-			$linha['trailer']
+				$linha['titulo'],
+				$linha['codigo'],
+				$linha['sinopse'],
+				$linha['quantidade'],
+				$linha['trailer']
 
 		);
 		
 		return $filme;
+		
+
 	}
 
 	//listar todos os filmes

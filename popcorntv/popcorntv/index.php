@@ -9,7 +9,7 @@
 		porque se tem get veio do proprio formulario nao é um formulario novo
 	*/
 		//variavel que recebe o endereco padrao
-		$destino = 'app/script/incluirFilme.php'; //arquivo para incluir
+		$destino = 'app/script/incluirFilmes.php'; //arquivo para incluir
 
 	//verifica se existe filme no get
 	if(isset($_GET['codigo']))
@@ -27,6 +27,7 @@
 		e nos retorna um novo objeto com esses dados  arquivo RepositorioFilmes.php pode ser observado
 		*/
 		$filme = $repositorio->buscarFilme($codigo); //aqui recebemos um novo objeto com os dados do codigo enviado
+	
 		/*
 		para que o repositorio altere o filme ele ira precisar do codigo porem no formulario nao temos o campo onde informamos o codigo 
 		para que possamos enviar via para o arquivo app/script/alterarFilme.php 
@@ -84,8 +85,33 @@
                         <!-- content -->
                         <div class="col-sm-12" id="featured">   
                           <div class="page-header text-muted">Filmes</div>
-                          <form action ='app/script/incluirFilmes.php' method='post' class="form-horizontal">
+
+						<!--
+							a seguir esta as configuraçoes do inicio e envio dos dados do formulario
+							a action é um caminho passado por uma variavel $destino esse destino esta no cabecalho desse arquivo
+							e iniciado como o endereco que inseri um novo registro porem quando clicarmos no botao de atualizar
+							o link é a propria pagina passando o codigo do filme via get se ouver um get codigo entrara em uma condicao 
+							IF dentro desse ir ou seja IF GET CODIGO o $destino é alterado para o arquivo de atualizaçao, e a action vem 
+							dessa variavel como ja vimos.
+
+						-->
+						
+						<?php
+							echo isset($filme)?$filme->getTitulo():"";
+							echo $codigo;
+						?>
+                          <form action = <?=$destino;?> method='post' class="form-horizontal">
+
+						<!--
+							aqui temos um campo chamado codigo no formulario quando vamos cadastrar ainda nao temos o codigo
+							porem quando vamos atualizar precisamos do codigo porque usam a mesma tela
+							o isset() verifica se existe a variavel $codigo se ouver ela ja inclui no codigo da pagina invoca, essa variavel nao
+							contem apenas valores ela é um campo completo do tipo hidden ja com o codigo do produto atribuido 
+							ao chamar essa variavel estamos chamando o campo hidden que esta no cabecalho dessa pagina
+						-->
+						  <?= isset($codigo);?>
 							<fieldset>
+
 							
 							<!-- Form Name -->
 							<legend>Incluir</legend>
@@ -94,7 +120,15 @@
 							<div class="control-group">
 							  <label class="control-label" for="filme">Filme</label>
 							  <div class="controls">
-							    <input id="filme" name="titulo" type="text" />
+								<!--
+									nos campos precisamos caso tenhamos clicado em atualizar mostrar os valores referentes ao filme 
+									que queremos atualizar, ao enviar para a propria pagina index o codigo do filme o metodo $buscarFilme($codigoFilme)
+									cria um novo objeto com todos os dados do filme que passamos o codigo via atribulo e nos retorna esse objeto
+									agora podemos usalo para mostrar os daddos desse objeto que é o filme que queremos atulizar.
+									para isso na propriedade value dos campos escrevos os valores do objeto.
+								-->
+
+							    <input id="filme" name="titulo" type="text" value="<?php echo isset($filme)?$filme->getTitulo():"";?>" />
 							    
 							  </div>
 							</div>
@@ -103,7 +137,11 @@
 							<div class="control-group">
 							  <label class="control-label" for="sinopse">Sinopse</label>
 							  <div class="controls">                     
-							    <textarea id="sinopse" name="sinopse"></textarea>
+							    <textarea id="sinopse" name="sinopse" value="<?php echo isset($filme)?$filme->getSinopse():"";?>">
+
+								<?php echo isset($filme)?$filme->getSinopse():""?>
+							
+							</textarea>
 							  </div>
 							</div>
 							
@@ -111,7 +149,7 @@
 							<div class="control-group">
 							  <label class="control-label" for="quantidade">Quantidade</label>
 							  <div class="controls">
-							    <input id="cartaz" name="quantidade" type="text" placeholder="" class="input-xxlarge">
+							    <input id="cartaz" name="quantidade" type="text" placeholder="" class="input-xxlarge" value="<?php echo isset($filme)?$filme->getQuantidade():"";?>">
 							    
 							  </div>
 							</div>
@@ -120,7 +158,7 @@
 							<div class="control-group">
 							  <label class="control-label" for="trailer">Trailer</label>
 							  <div class="controls">
-							    <input id="trailer" name="trailer" type="text" placeholder="" class="input-xxlarge">
+							    <input id="trailer" name="trailer" type="text" placeholder="" class="input-xxlarge" value="<?php echo isset($filme)?$filme->getTrailer():"";?>">
 							    
 							  </div>
 							</div>
@@ -167,6 +205,8 @@
 								<td class="col-md-6"><?php echo $filmeTemporario->getTrailer() ?></td>
 
                         		<td class="col-md-1"><a class="btn btn-danger" href="app/script/excluir_filme.php?codigo=<?=$filmeTemporario->getCodigo(); ?>" role="button">Excluir</a></td>
+								<td class="col-md-1"><a class="btn btn-danger" href="index.php?codigo=<?=$filmeTemporario->getCodigo(); ?>" role="button">Alterar</a></td>
+
 
                         	</tr>
 
