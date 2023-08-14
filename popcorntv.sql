@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 05-Ago-2023 às 09:45
+-- Generation Time: 14-Ago-2023 às 15:19
 -- Versão do servidor: 10.1.13-MariaDB
 -- PHP Version: 5.5.37
 
@@ -36,15 +36,7 @@ CREATE TABLE IF NOT EXISTS `filmes` (
   `quantidade` varchar(11) DEFAULT NULL,
   `trailer` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`codigo`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-
---
--- Extraindo dados da tabela `filmes`
---
-
-INSERT INTO `filmes` (`codigo`, `titulo`, `sinopse`, `quantidade`, `trailer`) VALUES
-(1, 'dasdfsd', 'asdfasdf', '10', 'asdf'),
-(2, 'morri', 'eita', '50', 'oxe');
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

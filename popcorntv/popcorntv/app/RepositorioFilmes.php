@@ -47,17 +47,20 @@ class RepositorioFilmesMySQL implements IRepositorioFilmes
 
 	//atualizar filme
 	public function atualizarFilme($filme) //recebendo o objeto filme
-	{
+	{	
+		//atribuindo a cada variavel o valor do objeto recebido
 		$titulo = $filme->getTitulo();
 		$codigo = $filme->getCodigo();
 		$sinopse = $filme->getSinopse();
-		$quantidade = $filme->getQuantidate();
+		$quantidade = $filme->getQuantidade();
 		$trailer = $filme->getTrailer();
 
-		$sql = "UPDATE filme SET titulo = '$titulo', sinopse = '$sinopse', quantidade = '$quantidade', trailer = '$trailer'
+		//atribuindo a consulta de update a uma variavel
+		$sql = "UPDATE filmes SET titulo = '$titulo', sinopse = '$sinopse', quantidade = '$quantidade', trailer = '$trailer'
 		WHERE codigo = '$codigo'";
 
-		$this->conexao->execultarQuery($sql);
+		//enviando para o objeto conexao que tem o metodo responsavel por enviar paara o bando
+		$this->conexao->execultarQuery($sql); //a consulta esta na variavel $sql
 	}
 
 	//buscar um novo filme a partir do seu codigo 

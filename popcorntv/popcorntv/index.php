@@ -34,7 +34,7 @@
 		nesse caso precisaremos criar um campo oculto que recebelera o codigo do filme que estamos alterando ao enviarmos para o arquivo 
 		app/script/alterarFilme.php entaremos enviando tambem o codigo do filme em um campo oculto do html - type = hidden		
 		*/
-		$campoCodigo = '<input type="hidden" name="codigo" value="'. $codigo.'" />';
+		$campoCodigo = '<input type="hidden" name="codigo" value="'.$codigo.'" />';
 
 
 		// ESTA FALTANDO A PARTE DE IMPLEMENTAR NO HTML AS REGRAS DE ALTERAR FILME
@@ -95,21 +95,14 @@
 							dessa variavel como ja vimos.
 
 						-->
-						
-						<?php
-							echo isset($filme)?$filme->getTitulo():"";
-							echo $codigo;
-						?>
+
                           <form action = <?=$destino;?> method='post' class="form-horizontal">
 
 						<!--
-							aqui temos um campo chamado codigo no formulario quando vamos cadastrar ainda nao temos o codigo
-							porem quando vamos atualizar precisamos do codigo porque usam a mesma tela
-							o isset() verifica se existe a variavel $codigo se ouver ela ja inclui no codigo da pagina invoca, essa variavel nao
-							contem apenas valores ela é um campo completo do tipo hidden ja com o codigo do produto atribuido 
-							ao chamar essa variavel estamos chamando o campo hidden que esta no cabecalho dessa pagina
-						-->
-						  <?= isset($codigo);?>
+							aqui verificamos se existe o codigo ou seja se foi clicado no botao alterar e existe um cogigo se existir
+							ele atribui ao campo hidden o codigo no value caso contrario fica vazio
+						-->						
+						  <input type="hidden" name="codigo" value="<?=isset($codigo)?$codigo:""?>" />
 							<fieldset>
 
 							
@@ -185,38 +178,31 @@
                         
                         <table class="table table-hover">
                         	<tr>
-                        		<th></th>
+                        	
                         		<th>Filme</th>
 								<th>Sinopse</th>
 								<th>Quantidade</th>
 								<th>Trailer </th>
-                        		<th></th>
+                        		<th>exluir</th>
+								<th>alterar</th>
                         	</tr>
 							
-
 								<?php while ($filmeTemporario = array_shift($filmes)) {
 								?>
-
                         	<tr>
-                        		<td class="col-md-1"><a class="btn btn-default" href="#" role="button">Alterar</a></td>
                         		<td class="col-md-6"><?php echo $filmeTemporario->getTitulo() ?></td>
 								<td class="col-md-6"><?php echo $filmeTemporario->getSinopse() ?></td>
 								<td class="col-md-6"><?php echo $filmeTemporario->getQuantidade() ?></td>								
 								<td class="col-md-6"><?php echo $filmeTemporario->getTrailer() ?></td>
-
                         		<td class="col-md-1"><a class="btn btn-danger" href="app/script/excluir_filme.php?codigo=<?=$filmeTemporario->getCodigo(); ?>" role="button">Excluir</a></td>
-								<td class="col-md-1"><a class="btn btn-danger" href="index.php?codigo=<?=$filmeTemporario->getCodigo(); ?>" role="button">Alterar</a></td>
-
+								<td class="col-md-1"><a class="btn btn-default" href="index.php?codigo=<?=$filmeTemporario->getCodigo(); ?>" role="button">Alterar</a></td>
 
                         	</tr>
-
 							<?php } ?>
-                        	
-						</table>
-                      
+                       	
+						</table>                    
                         
                         <hr>
-                      
                         <div class="row" id="footer">    
                           <div class="col-sm-6">
                             
@@ -235,7 +221,6 @@
                       </h3>
                         
                       <hr>
-                        
                       
                     </div><!-- /col-9 -->
                 </div><!-- /padding -->
