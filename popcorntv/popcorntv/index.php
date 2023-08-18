@@ -36,7 +36,6 @@
 		*/
 		$campoCodigo = '<input type="hidden" name="codigo" value="'.$codigo.'" />';
 
-
 		// ESTA FALTANDO A PARTE DE IMPLEMENTAR NO HTML AS REGRAS DE ALTERAR FILME
 
 	}//senao ignora
@@ -93,7 +92,6 @@
 							o link é a propria pagina passando o codigo do filme via get se ouver um get codigo entrara em uma condicao 
 							IF dentro desse ir ou seja IF GET CODIGO o $destino é alterado para o arquivo de atualizaçao, e a action vem 
 							dessa variavel como ja vimos.
-
 						-->
 
                           <form action = <?=$destino;?> method='post' class="form-horizontal">
@@ -105,7 +103,6 @@
 						  <input type="hidden" name="codigo" value="<?=isset($codigo)?$codigo:""?>" />
 							<fieldset>
 
-							
 							<!-- Form Name -->
 							<legend>Incluir</legend>
 							

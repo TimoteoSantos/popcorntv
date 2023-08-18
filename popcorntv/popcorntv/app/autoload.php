@@ -8,6 +8,7 @@ function incluirClasses($nomeClasses)
 {
         require_once 'Filmes.php';
         require_once 'InterfaceFilmes.php';
+        require_once 'Cliente.php';
         require_once 'Conexao.php';
         require_once 'RepositorioFilmes.php';
 

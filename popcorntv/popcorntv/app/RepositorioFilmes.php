@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 //requer o arquivo de configuracao
 require_once 'autoload.php';
@@ -18,7 +18,7 @@ class RepositorioFilmesMySQL implements IRepositorioFilmes
 	{
 		//cria o objeto que sera responsavel pelas chamadas ao banco de dados
 		$this->conexao = new Conexao("localhost","root","","popcorntv");
-		//conecata ao banco de dados
+		//conecta ao banco de dados
 		if($this->conexao->conectar() == false){			
 			echo "erro" .mysqli_error();
 		}
@@ -82,10 +82,7 @@ class RepositorioFilmesMySQL implements IRepositorioFilmes
 				$linha['trailer']
 
 		);
-		
-		return $filme;
-		
-
+        return $filme;
 	}
 
 	//listar todos os filmes
