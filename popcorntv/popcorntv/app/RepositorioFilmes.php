@@ -73,8 +73,7 @@ class RepositorioFilmesMySQL implements IRepositorioFilmes
 
 		//cria um novo objeto com os dados que vieram do banco de dados
 
-		
-		$filme = new Filmes(
+			$filme = new Filmes(
 				$linha['titulo'],
 				$linha['codigo'],
 				$linha['sinopse'],

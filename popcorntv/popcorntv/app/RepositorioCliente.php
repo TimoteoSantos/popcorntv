@@ -1,11 +1,4 @@
 <?php
-/*
- * precisamos:
- * cadastrar
- * listar
- * exluir
- * alterar
- */
 require_once  'autoload.php';
 
 interface IClientes{
@@ -27,29 +20,54 @@ class RepositorioCliente implements IClientes
         $this->conexao = new  Conexao("localhost","root","","popcorntv");
         //agora chamaremos o metodo responsavel por fazer a conexao
         $conect = $this->conexao->conectar();
-
     }
+
+    //cadastrar cliente
     public function cadastrarCliente($Cliente)
     {
-       echo $Cliente->getNome();
-    }
-    public function atualizarCliente($Cliente)
-    {
-        // TODO: Implement atualizarCliente() method.
+        //atribuindo os dados do objeto $Cliente nas variaveis
+       $nome = $Cliente->getNome();
+       $sobreNome = $Cliente->getSobreNome();
+       $cpf = $Cliente->getCpf();
+
+       //fazendo o insert com os dados das variaveis
+       $sql = "INSERT INTO clientes(nome,sobrenome,cpf) VALUES ('$nome', '$sobreNome', '$cpf')";
+       $this->conexao->execultarQuery($sql);
     }
 
     public function removerCliente($codigo)
     {
         // TODO: Implement removerCliente() method.
+        $sql = "DELETE FROM clientes WHERE id = $codigo ";
+        $this->conexao->execultarQuery($sql);
+    }
+
+
+    public function atualizarCliente($Cliente)
+    {
+        // TODO: Implement atualizarCliente() method.
+        //atribuindo os dados do objeto $Cliente nas variaveis
+        $nome = $Cliente->getNome();
+        $sobreNome = $Cliente->getSobreNome();
+        $cpf = $Cliente->getCpf();
+        $codigo = $Cliente->getCodigo();
+
+        $sql = "UPDATE clientes SET nome='$nome',sobrenome = '$sobreNome',cpf='$cpf' WHERE id = '$codigo' ";
+        $this->conexao->execultarQuery($sql);
     }
 
     public function listarCliente($Clinte)
     {
         // TODO: Implement listarCliente() method.
+
+
     }
 
 }//final classe
 
-$Cliente = new Cliente("timoteo","santos",96);
+$Cliente = new Cliente("timote","santos",96);
+
 $repositorioCliente = new RepositorioCliente();
 $repositorioCliente->cadastrarCliente($Cliente);
+$repositorioCliente->removerCliente(2);
+$repositorioCliente->atualizarCliente($Cliente);

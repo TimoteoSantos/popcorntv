@@ -4,12 +4,24 @@ class Cliente
     private $nome;
     private $sobreNome;
     private $cpf;
+    private $codigo;
+
+    public function getCodigo()
+    {
+        return $this->codigo;
+    }
+
+    public function setCodigo($codigo)
+    {
+        $this->codigo = $codigo;
+    }
 
     public function __construct($nome,$sobreNome,$cpf)
     {
         $this->nome = $nome;
         $this->sobreNome = $sobreNome;
         $this->cpf = $cpf;
+
     }
     public  function getNome()
     {
