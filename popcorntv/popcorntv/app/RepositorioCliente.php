@@ -5,7 +5,7 @@ interface IClientes{
     public function cadastrarCliente($Cliente);
     public function removerCliente($codigo);
     public function atualizarCliente($Cliente);
-    public function listarCliente($Clinte);
+    public function listarCliente();
 }
 
 class RepositorioCliente implements IClientes
@@ -55,19 +55,54 @@ class RepositorioCliente implements IClientes
         $sql = "UPDATE clientes SET nome='$nome',sobrenome = '$sobreNome',cpf='$cpf' WHERE id = '$codigo' ";
         $this->conexao->execultarQuery($sql);
     }
-
-    public function listarCliente($Clinte)
+	
+	//listar todos os clientes
+    public function listarCliente()
     {
         // TODO: Implement listarCliente() method.
-
+		
+		$listagem = $this->conexao->execultarQuery("SELECT * FROM clientes");
+		
+		$arrayClientes = array();
+		
+		while ($linha = mysqli_fetch_array($listagem))
+		{
+			$Clientes = new Cliente (
+			
+				$linha['nome'],
+				$linha['sobrenome'],
+				$linha['cpf'],
+				$linha['id']
+			);
+			array_push($arrayClientes,$Clientes);
+		}
+		
+		return $arrayClientes;
 
     }
+	
+	//listar um cliente pelo codigo
+    public function buscarCliente($codigo)
+    {
+        // TODO: Implement listarCliente() method.
+		
+		$listagem = $this->conexao->execultarQuery("SELECT * FROM clientes WHERE id = '$codigo'");
+		
+		while ($linha = mysqli_fetch_array($listagem))
+		{
+			$Cliente = new Cliente (
+			
+				$linha['nome'],
+				$linha['sobrenome'],
+				$linha['cpf'],
+				$linha['id']
+			);
+		
+		return $Cliente;
+		
+		}
+    }	
 
 }//final classe
 
-$Cliente = new Cliente("timote","santos",96);
-
 $repositorioCliente = new RepositorioCliente();
-$repositorioCliente->cadastrarCliente($Cliente);
-$repositorioCliente->removerCliente(2);
-$repositorioCliente->atualizarCliente($Cliente);
