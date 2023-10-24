@@ -1,4 +1,31 @@
 <!DOCTYPE html>
+
+<?php
+
+require 'app/RepositorioCliente.php'; 
+	$cliente = $repositorioCliente->listarCliente();
+
+		$destino = 'app/script/incluirCliente.php';
+
+
+	if(isset($_GET['codigo']))
+	{
+
+		$destino = 'app/script/alterarCliente.php'; 
+
+
+		$codigo = $_GET['codigo'];
+
+
+		$filme = $repositorio->buscarCliente($codigo);
+	
+		$campoCodigo = '<input type="hidden" name="codigo" value="'.$codigo.'" />';
+
+
+	}
+
+	?>
+
 <html lang="en">
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -6,9 +33,7 @@
 		<title>Popcorn TV</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link href="css/bootstrap.min.css" rel="stylesheet">
-		<!--[if lt IE 9]>
-			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
+
 		<link href="css/styles.css" rel="stylesheet">
 	</head>
 	<body>
@@ -28,7 +53,7 @@
                           <div class="page-header text-muted">clientes</div>
 
 
-                          <form action ="" method='post' class="form-horizontal">
+						  <form action = <?=$destino;?> method='post' class="form-horizontal">
 
 
 						  <input type="hidden" name="codigo" value="" />
@@ -39,7 +64,7 @@
 
 							<!-- Text input-->
 							<div class="control-group">
-							  <label class="control-label" for="cliente">cliente</label>
+							  <label class="control-label" for="cliente">NOME</label>
 							  <div class="controls">
 
 
@@ -49,24 +74,32 @@
 							</div>
 
 
+							
 							<!-- Text input-->
 							<div class="control-group">
-							  <label class="control-label" for="quantidade">Quantidade</label>
+							  <label class="control-label" for="cliente">SOBRE NOME</label>
 							  <div class="controls">
-							    <input id="cartaz" name="sobrenome" type="text" placeholder="" class="input-xxlarge" >
+
+
+							    <input id="cliente" name="sobrenome" type="text" value="" />
 
 							  </div>
 							</div>
 
+							
 							<!-- Text input-->
 							<div class="control-group">
-							  <label class="control-label" for="trailer">Trailer</label>
+							  <label class="control-label" for="cliente">CPF</label>
 							  <div class="controls">
-							    <input id="trailer" name="cpf" type="number" placeholder="" class="input-xxlarge" >
+
+
+							    <input id="cliente" name="cpf" type="text" value="" />
 
 							  </div>
 							</div>
 
+
+							
 							<!-- Button -->
 							<div class="control-group">
 							  <label class="control-label" for=""></label>

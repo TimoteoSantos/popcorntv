@@ -92,7 +92,7 @@
 							
 							<!-- Text input-->
 							<div class="control-group">
-							  <label class="control-label" for="filme">Filme</label>
+							  <label class="control-label" for="filme">FILME</label>
 							  <div class="controls">
 								<!--
 									nos campos precisamos caso tenhamos clicado em atualizar mostrar os valores referentes ao filme 
@@ -109,7 +109,7 @@
 							
 							<!-- Textarea -->
 							<div class="control-group">
-							  <label class="control-label" for="sinopse">Sinopse</label>
+							  <label class="control-label" for="sinopse">SINOPSE</label>
 							  <div class="controls">                     
 							    <textarea id="sinopse" name="sinopse" value="<?php echo isset($filme)?$filme->getSinopse():"";?>">
 
@@ -121,7 +121,7 @@
 							
 							<!-- Text input-->
 							<div class="control-group">
-							  <label class="control-label" for="quantidade">Quantidade</label>
+							  <label class="control-label" for="quantidade">QUANTIDADE</label>
 							  <div class="controls">
 							    <input id="cartaz" name="quantidade" type="text" placeholder="" class="input-xxlarge" value="<?php echo isset($filme)?$filme->getQuantidade():"";?>">
 							    
@@ -130,7 +130,7 @@
 							
 							<!-- Text input-->
 							<div class="control-group">
-							  <label class="control-label" for="trailer">Trailer</label>
+							  <label class="control-label" for="trailer">TRAILER</label>
 							  <div class="controls">
 							    <input id="trailer" name="trailer" type="text" placeholder="" class="input-xxlarge" value="<?php echo isset($filme)?$filme->getTrailer():"";?>">
 							    
