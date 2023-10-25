@@ -168,8 +168,7 @@
 								<th>alterar</th>
                         	</tr>
 							
-								<?php while ($filmeTemporario = array_shift($filmes)) {
-								?>
+								<?php while ($filmeTemporario = array_shift($filmes)) {?>
                         	<tr>
                         		<td class="col-md-6"><?php echo $filmeTemporario->getTitulo() ?></td>
 								<td class="col-md-6"><?php echo $filmeTemporario->getSinopse() ?></td>

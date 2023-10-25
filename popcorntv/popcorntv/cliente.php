@@ -17,7 +17,7 @@ require 'app/RepositorioCliente.php';
 		$codigo = $_GET['codigo'];
 
 
-		$filme = $repositorio->buscarCliente($codigo);
+		$cliente = $repositorio->buscarCliente($codigo);
 	
 		$campoCodigo = '<input type="hidden" name="codigo" value="'.$codigo.'" />';
 
@@ -130,13 +130,17 @@ require 'app/RepositorioCliente.php';
                                 <th>alterar</th>
                         	</tr>
 
+							<?php while ($clientes = array_shift($cliente)) {?>
+
+
                             <tr>
-             					<td class="col-md-6">timoteo</td>
-                                <td class="col-md-6">santos</td>
-                                <td class="col-md-6">0969</td>
+             					<td class="col-md-6"><?php echo $clientes->getNome(); ?></td>
+                                <td class="col-md-6"><?php echo $clientes->getSobrenome(); ?></td>
+                                <td class="col-md-6"><?php echo $clientes->getCpf(); ?></td>
                                 <td class="col-md-1"><a class="btn btn-danger" href="#" role="button">Excluir</a></td>
                                 <td class="col-md-1"><a class="btn btn-default" href=""# role="button">Alterar</a></td>
-
+							
+								<?php } ?>
 
                             </tr>
 

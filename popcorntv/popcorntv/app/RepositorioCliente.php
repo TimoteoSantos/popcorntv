@@ -33,12 +33,13 @@ class RepositorioCliente implements IClientes
        //fazendo o insert com os dados das variaveis
        $sql = "INSERT INTO clientes(nome,sobrenome,cpf) VALUES ('$nome', '$sobreNome', '$cpf')";
        $this->conexao->execultarQuery($sql);
+       return $sql;
     }
 
     public function removerCliente($codigo)
     {
         // TODO: Implement removerCliente() method.
-        $sql = "DELETE FROM clientes WHERE id = $codigo ";
+        $sql = "DELETE FROM clientes WHERE codigo_cliente = $codigo ";
         $this->conexao->execultarQuery($sql);
     }
 
@@ -52,41 +53,50 @@ class RepositorioCliente implements IClientes
         $cpf = $Cliente->getCpf();
         $codigo = $Cliente->getCodigo();
 
-        $sql = "UPDATE clientes SET nome='$nome',sobrenome = '$sobreNome',cpf='$cpf' WHERE id = '$codigo' ";
+        $sql = "UPDATE clientes SET nome='$nome',sobrenome = '$sobreNome',cpf='$cpf' WHERE codigo_cliente  = '$codigo' ";
         $this->conexao->execultarQuery($sql);
     }
 	
-	//listar todos os clientes
-    public function listarCliente()
-    {
-        // TODO: Implement listarCliente() method.
+
+	public function listarCliente()
+	{
+		//obtem a lista de todos os filmes
+		$listagem = $this->conexao->execultarQuery("SELECT * FROM clientes"); //aqui ja temos todos os filmes
+		//cria um novo array onde guadaremos os filmes
+		$arrayCliente = array();
+	
+		//varre a lista de entrada da tabela filme 
+		//cria um novo objeto filme para cada entrada 
+		//da tabela
+
+		//AGORA PRECISAMOS SEPARAR OS FILMES ;)
 		
-		$listagem = $this->conexao->execultarQuery("SELECT * FROM clientes");
-		
-		$arrayClientes = array();
-		
-		while ($linha = mysqli_fetch_array($listagem))
+		//varrenendo os filmes rececebidos na variavel $listagem
+		while ($linha= mysqli_fetch_array($listagem))
 		{
-			$Clientes = new Cliente (
-			
+			//cada vez que passamos por um registro é criado um novo objeto filme
+			$cliente = new Cliente
+            (
 				$linha['nome'],
 				$linha['sobrenome'],
 				$linha['cpf'],
-				$linha['id']
+				$linha['codigo_cliente']
+				
 			);
-			array_push($arrayClientes,$Clientes);
+			array_push($arrayCliente,$cliente);
 		}
-		
-		return $arrayClientes;
 
-    }
+		return $arrayCliente; //retorna um array de um filme
+	}
+
+
 	
 	//listar um cliente pelo codigo
     public function buscarCliente($codigo)
     {
         // TODO: Implement listarCliente() method.
 		
-		$listagem = $this->conexao->execultarQuery("SELECT * FROM clientes WHERE id = '$codigo'");
+		$listagem = $this->conexao->execultarQuery("SELECT * FROM clientes WHERE codigo_cliente = '$codigo'");
 		
 		while ($linha = mysqli_fetch_array($listagem))
 		{
@@ -95,7 +105,7 @@ class RepositorioCliente implements IClientes
 				$linha['nome'],
 				$linha['sobrenome'],
 				$linha['cpf'],
-				$linha['id']
+				$linha['codigo_cliente']
 			);
 		
 		return $Cliente;
