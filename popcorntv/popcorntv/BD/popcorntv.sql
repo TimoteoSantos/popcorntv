@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 24-Out-2023 às 15:06
+-- Generation Time: 26-Out-2023 às 15:01
 -- Versão do servidor: 10.1.13-MariaDB
 -- PHP Version: 5.5.37
 
@@ -25,17 +25,27 @@ USE `popcorntv`;
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `cliente`
+-- Estrutura da tabela `clientes`
 --
 
-DROP TABLE IF EXISTS `cliente`;
-CREATE TABLE IF NOT EXISTS `cliente` (
-  `codigo_cliente` int(11) NOT NULL,
+DROP TABLE IF EXISTS `clientes`;
+CREATE TABLE IF NOT EXISTS `clientes` (
+  `codigo_cliente` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(255) DEFAULT NULL,
   `sobrenome` varchar(255) DEFAULT NULL,
-  `CPF` varchar(255) DEFAULT NULL,
+  `cpf` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`codigo_cliente`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `clientes`
+--
+
+INSERT INTO `clientes` (`codigo_cliente`, `nome`, `sobrenome`, `cpf`) VALUES
+(17, 'SADF', 'ASDF', '9617559463'),
+(18, 'tiago', 'santos', '09617559468'),
+(19, 'timoteo', 'asdf', '09617559463'),
+(20, '', '', '');
 
 -- --------------------------------------------------------
 
@@ -45,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `cliente` (
 
 DROP TABLE IF EXISTS `filmes`;
 CREATE TABLE IF NOT EXISTS `filmes` (
-  `codigo` int(11) NOT NULL,
+  `codigo` int(11) NOT NULL AUTO_INCREMENT,
   `titulo` varchar(255) DEFAULT NULL,
   `sinopse` varchar(255) DEFAULT NULL,
   `quantidade` int(11) DEFAULT NULL,
@@ -61,7 +71,7 @@ CREATE TABLE IF NOT EXISTS `filmes` (
 
 DROP TABLE IF EXISTS `locacao`;
 CREATE TABLE IF NOT EXISTS `locacao` (
-  `codigo_locacao` int(11) NOT NULL,
+  `codigo_locacao` int(11) NOT NULL AUTO_INCREMENT,
   `data_locacao` varchar(255) DEFAULT NULL,
   `observacao` varchar(255) DEFAULT NULL,
   `FK_cliente_codigo_cliente` int(11) DEFAULT NULL,
@@ -91,7 +101,7 @@ CREATE TABLE IF NOT EXISTS `locado` (
 -- Limitadores para a tabela `locacao`
 --
 ALTER TABLE `locacao`
-  ADD CONSTRAINT `FK_LOCACAO_2` FOREIGN KEY (`FK_cliente_codigo_cliente`) REFERENCES `cliente` (`codigo_cliente`) ON DELETE CASCADE;
+  ADD CONSTRAINT `FK_LOCACAO_2` FOREIGN KEY (`FK_cliente_codigo_cliente`) REFERENCES `clientes` (`codigo_cliente`) ON DELETE CASCADE;
 
 --
 -- Limitadores para a tabela `locado`

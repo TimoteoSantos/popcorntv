@@ -11,9 +11,9 @@ $clientes = new Cliente($_POST['nome'],$_POST['sobrenome'],$_POST['cpf']);
 com esse novo objeto que contem os dados recebidos invocamos o metodo da classe Cliente responsavel por gravar o novo cliente
 esse metodo espera receber um objeto com os dados
 */
- $repositorioCliente = $repositorioCliente->cadastrarCliente($clientes);
- var_dump($repositorioCliente);
+
+ $retorno = $repositorioCliente->cadastrarCliente($clientes);
 
 //retorna para a pagina cliente
-//header('Location: ../../cliente.php');
+header('Location: ../../cliente.php?retorno=' . $retorno);
 

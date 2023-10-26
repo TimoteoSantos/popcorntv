@@ -30,10 +30,26 @@ class RepositorioCliente implements IClientes
        $sobreNome = $Cliente->getSobreNome();
        $cpf = $Cliente->getCpf();
 
+       //verificar se o cpf ja tem cadastro
+       $cadastroSistema = $this->pesquisarCpf($cpf);//verifica se o cpf consta no sistema
+       if(isset($cadastroSistema))
+       {
+       
+        //retorna uma viso que ja existe cadastro desse cpf
+        return "CPF JA CADASTRADO";
+
+    
+       }else{//se nao tem cadastro
+
        //fazendo o insert com os dados das variaveis
        $sql = "INSERT INTO clientes(nome,sobrenome,cpf) VALUES ('$nome', '$sobreNome', '$cpf')";
-       $this->conexao->execultarQuery($sql);
-       return $sql;
+        
+       if($this->conexao->execultarQuery($sql)){
+        
+        //retorna quando cadastra cadastrou
+        return "CADASTRADO";
+       }
+      }
     }
 
     public function removerCliente($codigo)
@@ -42,7 +58,6 @@ class RepositorioCliente implements IClientes
         $sql = "DELETE FROM clientes WHERE codigo_cliente = $codigo ";
         $this->conexao->execultarQuery($sql);
     }
-
 
     public function atualizarCliente($Cliente)
     {
@@ -90,7 +105,6 @@ class RepositorioCliente implements IClientes
 	}
 
 
-	
 	//listar um cliente pelo codigo
     public function buscarCliente($codigo)
     {
@@ -111,8 +125,20 @@ class RepositorioCliente implements IClientes
 		return $Cliente;
 		
 		}
-    }	
+    }
+
+    //retornao se encontrou o cpf
+    public function pesquisarCpf($cpf){
+
+        $cpfCliente = $this->conexao->execultarQuery("SELECT * FROM clientes WHERE cpf = '$cpf'");
+        $cpf =  mysqli_fetch_array($cpfCliente);
+        $cpf1 = $cpf['cpf'];
+        //retornar
+        return $cpf1;
+
+    }
 
 }//final classe
 
+//a classe ja serve uma instancia
 $repositorioCliente = new RepositorioCliente();
